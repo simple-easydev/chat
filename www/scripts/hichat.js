@@ -54,6 +54,7 @@ class HiChat{
         
         var that = this;
         this.socket = io.connect("https://chat1.camscartel.com")
+        // this.socket = io.connect()
         this.socket.on('connect', function() {
             document.getElementById('info').textContent = 'get yourself a nickname :)';
             if(usertype == "guest"){
