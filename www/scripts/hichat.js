@@ -53,7 +53,7 @@ class HiChat{
         console.log(name, usertype);
         
         var that = this;
-        this.socket = io.connect("http://live.camscartel.com:8081");
+        this.socket = io.connect("https://chat1.camscartel.com")
         this.socket.on('connect', function() {
             document.getElementById('info').textContent = 'get yourself a nickname :)';
             if(usertype == "guest"){
