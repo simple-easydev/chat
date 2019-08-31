@@ -53,7 +53,7 @@ class HiChat{
         console.log(name, usertype);
         
         var that = this;
-        this.socket = io.connect("http://localhost:3000");
+        this.socket = io.connect("http://3.85.238.14:3000");
         this.socket.on('connect', function() {
             document.getElementById('info').textContent = 'get yourself a nickname :)';
             if(usertype == "guest"){
