@@ -17,9 +17,9 @@ function bake_cookie(data) {
 }
 
 function read_cookie() {
-    if(document.cookie != ""){
-        return JSON.parse(document.cookie);
-    }
+    // if(document.cookie != ""){
+    //     return JSON.parse(document.cookie);
+    // }
     return {};
 }
 
