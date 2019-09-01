@@ -11,7 +11,14 @@
         <link rel="stylesheet" href="styles/main.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+
     </head>
     <body>
         <div class="wrapper">
@@ -35,13 +42,68 @@
                 <input type="button" value="OK" id="loginBtn" class="btn"/>
             </div>
         </div>
-        <script src="scripts/socket.io.js"></script>
+        <script src="scripts/const.js"></script>
+        <script src="socket.io/socket.io.js"></script>
         <script src="scripts/hichat.js"></script>
         <script src="scripts/inputEmoji.js"></script>
         <script>
             $(function () {
                 $('#messageInput').emoji({place: 'after'});
-            })
+                document.addEventListener('notification', e => {
+                    const message = e.detail;
+                    const time = Date.now();
+
+                        const html = `<div class="toast" id = "${time}" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" >
+                            <div class="toast-header">
+                                <strong class="mr-auto">Chat</strong>
+                                <small></small>
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="toast-body">
+                                ${message}
+                            </div>
+                        </div>`;
+                        $("#notification-container").prepend(html);
+                        $(`#${time}`).toast('show');
+                        $(`#${time}`).on('hidden.bs.toast', function () {
+                            // do something…
+                            $(this).remove();
+                        })
+                    }
+                );
+
+                getChatHistory();
+            });
+
+            function getChatHistory(){
+                var urlParams = new URLSearchParams(window.location.search);
+                var groupid = urlParams.get('groupid');
+                $.ajax({
+                    url: `${CONSTANT.HOST}/getChatHistory`,
+                    type: "get", //send it through get method
+                    data: { 
+                        groupid
+                    },
+                    success: function(response) {
+                        //Do Something
+                        hichat.setPrevHistory(response.result)
+                        console.log(hichat);
+                    }
+                });
+            }
+
+            
         </script>
+    
     </body>
+
+    <div id = "notification-container" style="position: absolute; top: 1rem; right: 1rem;">
+
+    </div>
+
+    
+
+
 </html>

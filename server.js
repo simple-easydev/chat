@@ -1,25 +1,29 @@
 require('dotenv').config()
 var express = require('express'),
     app = express(),
-    server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
     chatHistory = [],
+    fileupload = require('express-fileupload'),
     users = [];
 
 const fs = require('fs');
 var lastSaveTime = Math.floor(Date.now()/1000);
 var moment = require("moment");
+var bodyParser = require("body-parser");
+var appRouter = require("./routes");
 
 app.use('/', express.static(__dirname + '/www'));
-
-//bind the server to the 80 port
-//server.listen(3000);//for local test
+app.use(bodyParser.json({limit:"5mb"}));
+app.use(bodyParser.urlencoded({extended:true, limit:"5mb"}));
+app.use(fileupload());
+appRouter.register(app);
+var server = require('http').createServer(app);
 server.listen(process.env.PORT || 3000);//publish to heroku
-//server.listen(process.env.OPENSHIFT_NODEJS_PORT || 3000);//publish to openshift
-//console.log('server started on port'+process.env.PORT || 3000);
-//handle the socket
+
 console.log("SERVER IS RUNNING ON", process.env.PORT || 3000)
+
+io = require('socket.io').listen(server),
 io.on('connection', (socket) => {
+    console.log("NEW SCOKET IS CONNECTED ON", process.env.PORT || 3000)
     //new user login
     socket.on('login', (nickname, usertype, roomid) => {
 
@@ -64,18 +68,35 @@ io.on('connection', (socket) => {
     });
 
 
+    socket.on('notification', (msg, roomid)=>{
+        console.log(msg, roomid);
+        if(parseInt(roomid) > 0){
+            socket.broadcast.to(roomid).emit('notification', msg);
+        }else{
+            socket.broadcast.emit('notification', msg);   
+        }
+        
+    });
+
     function saveChatHistory(usertype, nickname, message, roomid){
 
         var curTime = Math.floor(Date.now()/1000);
         const datestr = new Date().toTimeString().substr(0, 8);
 
-        if(curTime - lastSaveTime > 3600){
+        if(curTime - lastSaveTime > 10){
             //save chat history to file
 
-            var dir = `./history`;
+            var dir = process.env.HISTORY;
             if (!fs.existsSync(dir)){
                 fs.mkdirSync(dir);
             }
+
+            dir += "/"+roomid;
+
+            if (!fs.existsSync(dir)){
+                fs.mkdirSync(dir);
+            }
+
             const filename = moment().format('MMMM_Do_YYYY_h_mm_ss');;
             fs.writeFile(`${dir}/${filename}.sav`, chatHistory.join(), (err) => {
                 if (err) throw err;
@@ -86,8 +107,11 @@ io.on('connection', (socket) => {
             chatHistory= [];
             return;
         }
-        
-        const history = `${datestr}::${usertype}::${nickname}::${roomid}::${message}`;
+
+        if(message.indexOf("\n")==-1){
+            message += '\n';
+        }
+        const history = `${datestr}<=>${usertype}<=>${nickname}<=>${roomid}<=>${message}`;
         chatHistory.push(history);
 
 

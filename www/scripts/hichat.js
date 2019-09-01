@@ -27,11 +27,12 @@ function delete_cookie() {
   document.cookie = "";
 }
 
+var hichat;
 window.onload = function() {
     var urlParams = new URLSearchParams(window.location.search);
     var groupid = urlParams.get('groupid');
     var cookie = read_cookie();
-    var hichat = new HiChat(groupid, cookie);
+    hichat = new HiChat(groupid, cookie);
     // hichat.init(groupid);
 };
 
@@ -48,13 +49,13 @@ class HiChat{
         var cookie = this.cookie;
         var urlParams = new URLSearchParams(window.location.search);
         var name = cookie["name"] || urlParams.get('name');
-        var usertype = cookie["usertype"] || urlParams.get('usertype');
 
-        console.log(name, usertype);
+        var usertype = cookie["usertype"] || urlParams.get('usertype');
+        this.name = name;
         
         var that = this;
-        this.socket = io.connect("https://chat1.camscartel.com")
-        // this.socket = io.connect()
+        // this.socket = io.connect("https://chat1.camscartel.com")
+        this.socket = io.connect()
         this.socket.on('connect', function() {
             document.getElementById('info').textContent = 'get yourself a nickname :)';
             if(usertype == "guest"){
@@ -88,6 +89,16 @@ class HiChat{
         });
         this.socket.on('newMsg', function(user, msg, color) {
             that._displayNewMsg(user, msg, color);
+        });
+
+        this.socket.on('notification', function(msg, color) {
+
+            console.log(msg);
+
+            //document 
+            var event = new CustomEvent('notification', { detail: msg });
+            document.dispatchEvent(event);
+
         });
         
         document.getElementById('loginBtn').addEventListener('click', function() {
@@ -131,6 +142,28 @@ class HiChat{
             };
         }, false);
         
+    }
+
+    setPrevHistory(data){
+        const originname = this.name;
+        data.forEach(element => {
+            const name = (element.name == originname)?'me':element.name;
+            const time = element.time;
+            const color = colorConfig[element.usertype];
+            const message = element.message;
+            this._displayOldMsg(name, message, color, time);
+        });
+    }
+
+    _displayOldMsg(user, msg, color, date){
+        var container = document.getElementById('historyMsg'),
+            msgToDisplay = document.createElement('p'),
+            //determine whether the msg contains emoji
+            msg = this._showEmoji(msg);
+            msgToDisplay.style.color = color || '#000';
+        msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
+        container.appendChild(msgToDisplay);
+        container.scrollTop = container.scrollHeight;
     }
 
 
