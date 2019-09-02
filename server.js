@@ -27,14 +27,15 @@ io.on('connection', (socket) => {
     //new user login
     socket.on('login', (nickname, usertype, roomid) => {
 
-        console.log(nickname, usertype, roomid);
-
         if(users[roomid] == undefined){
             users[roomid] = [];
         }
 
         if (users[roomid].indexOf(nickname) > -1) {
             socket.emit('nickExisted');
+            socket.nickname = nickname;
+            socket.roomid = roomid;
+            socket.usertype = usertype;
         } else {
             //socket.userIndex = users.length;
             socket.nickname = nickname;
@@ -63,18 +64,18 @@ io.on('connection', (socket) => {
         var roomid = socket.roomid;
         socket.broadcast.to(roomid).emit('newMsg', socket.nickname, msg, color, roomid);
         saveChatHistory(socket.usertype, socket.nickname, msg, roomid);
-
-
     });
 
 
-    socket.on('notification', (msg, roomid)=>{
-        console.log(msg, roomid);
-        if(parseInt(roomid) > 0){
-            socket.broadcast.to(roomid).emit('notification', msg);
-        }else{
-            socket.broadcast.emit('notification', msg);   
-        }
+    socket.on('notification', (msg, roomid, imagelink)=>{
+        console.log(msg, roomid, imagelink)
+        socket.broadcast.to(roomid).emit('notification', msg, imagelink);
+
+        // if(parseInt(roomid) > 0){
+        //     socket.broadcast.to(roomid).emit('notification', msg, imagelink);
+        // }else{
+        //     socket.broadcast.emit('notification', msg, imagelink);   
+        // }
         
     });
 

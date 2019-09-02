@@ -22,8 +22,9 @@ html, body {
 }
 
 .banner {
-    height: 10%;
+    height: 0%;
     width: 100%;
+    display:none;
 }
 .banner p {
     float: left;
@@ -36,9 +37,10 @@ html, body {
     width: 100%;
 }
 #historyMsg {
-    height: 80%;
+    height: 90%;
     background-color: #fff;
     overflow: auto;
+    padding:20px 20px 0 20px;
 }
 #historyMsg img {
     max-width: 99%;
@@ -73,6 +75,7 @@ html, body {
     float:left;
     background: #f49790;
     color: #fff;
+    text-indent:20px;
 }
 #sendBtn {
     float: right;
@@ -165,4 +168,7 @@ footer {
     right: 0px; */
     display: none;
 
+}
+.notification-image{
+    width: 100px;
 }

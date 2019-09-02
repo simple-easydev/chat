@@ -1,8 +1,8 @@
 const colorConfig = {
-    'guest':'black',
-    'vip':'green',
+    'guest':'#000000',
+    'vip':'#FFD700',
     'private':'blue',
-    'broadcast':'red'
+    'broadcaster':'#b83dba'
 }
 
 // bake_cookie({
@@ -23,16 +23,18 @@ function read_cookie() {
     return {};
 }
 
-function delete_cookie() {
-  document.cookie = "";
+function delete_cookie() {Jus
+    document.cookie = "";
 }
 
 var hichat;
 window.onload = function() {
     var urlParams = new URLSearchParams(window.location.search);
     var groupid = urlParams.get('groupid');
+    
     var cookie = read_cookie();
     hichat = new HiChat(groupid, cookie);
+    
     // hichat.init(groupid);
 };
 
@@ -91,13 +93,13 @@ class HiChat{
             that._displayNewMsg(user, msg, color);
         });
 
-        this.socket.on('notification', function(msg, color) {
-
-            console.log(msg);
+        this.socket.on('notification', function(msg, imagelink) {
 
             //document 
-            var event = new CustomEvent('notification', { detail: msg });
-            document.dispatchEvent(event);
+            // var event = new CustomEvent('notification', { detail: msg });
+            // document.dispatchEvent(event);
+            
+            that._displayNotification(msg, imagelink);
 
         });
         
@@ -165,7 +167,25 @@ class HiChat{
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
     }
-
+    
+    _displayNotification(msg, imagelink){
+        console.log(imagelink);
+        var container = document.getElementById('historyMsg'),
+            msgToDisplay = document.createElement('p'),
+            imgToDisplay = document.createElement('div'),
+            date = new Date().toTimeString().substr(0, 8),
+            //determine whether the msg contains emoji
+            msg = this._showEmoji(msg);
+            msgToDisplay.style.color = '#000';
+            msgToDisplay.style.fontStyle = "italic";
+            
+            
+        msgToDisplay.innerHTML = '<span class="timespan">(' + date + '): </span>' + msg;
+        imgToDisplay.innerHTML = imagelink;
+        container.appendChild(msgToDisplay);
+        container.appendChild(imgToDisplay);
+        container.scrollTop = container.scrollHeight;
+    }
 
     _displayNewMsg(user, msg, color) {
         var container = document.getElementById('historyMsg'),

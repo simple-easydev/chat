@@ -10,36 +10,46 @@ var dir = process.env.HISTORY;
 router.post("/notification", (req, res, next) => {
     const message = req.body.message;
     const groupid = req.body.groupid;
-    socket.emit('notification', message, groupid);
+    const image_link = req.body.image_link;
+    console.log(message, image_link);
+    socket.emit('notification', message, groupid, image_link);
     res.status(200).json({result:true})
 })
 
 router.get("/getChatHistory", (req, res, next) => {
 
     const roomid = req.query.groupid;
-    const path = `${dir}/${roomid}`;
+    const path = `${dir}\/${roomid}`;
 
     console.log(path);
 
     const listFiles = (callback)=>{
 
+        if(roomid == ""){
+            callback("wrong path");
+            return;
+        }
+
         if (!fs.existsSync(path)){
-            callback("history data is not existing");
+            // fs.mkdirSync(path);
+            callback("history folder is not existing");
             return;
         }
 
         fs.readdir(path, function(err, items) {
-            if(items.length > 1){
+            if(items.length > 0){
                 const lastFile = items[items.length - 1];
                 callback (err, lastFile);
             }else{
-                callback("history data is not existing");
+                callback("history items is not existing");
             }
         });
     }
 
     const readFile = (filename, callback)=>{
+
         var dataset = [];
+        
         function readLines(input, func) {
             var remaining = '';
             
