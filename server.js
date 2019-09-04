@@ -68,14 +68,12 @@ io.on('connection', (socket) => {
 
 
     socket.on('notification', (msg, roomid, imagelink)=>{
-        console.log(msg, roomid, imagelink)
-        socket.broadcast.to(roomid).emit('notification', msg, imagelink);
 
-        // if(parseInt(roomid) > 0){
-        //     socket.broadcast.to(roomid).emit('notification', msg, imagelink);
-        // }else{
-        //     socket.broadcast.emit('notification', msg, imagelink);   
-        // }
+        if(roomid == "global"){
+            socket.broadcast.emit('notification', msg, imagelink);   
+        }else{
+            socket.broadcast.to(roomid).emit('notification', msg, imagelink);
+        }
         
     });
 

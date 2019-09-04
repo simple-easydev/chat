@@ -46,7 +46,7 @@ html, body {
     max-width: 99%;
 }
 .timespan {
-    color: #ddd;
+    color: #541800;
 }
 .items {
     height: 30px;
@@ -171,4 +171,24 @@ footer {
 }
 .notification-image{
     width: 100px;
+}
+
+.vip-user img {
+    width: 25px;
+}
+.vip-user {
+    color: #000000;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #000000;
+    opacity: 1; /* Firefox */
+}
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #000000;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #000000;
 }

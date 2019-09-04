@@ -1,6 +1,6 @@
 const colorConfig = {
     'guest':'#000000',
-    'vip':'#FFD700',
+    'vip':'#78762E',
     'private':'blue',
     'broadcaster':'#b83dba'
 }
@@ -160,10 +160,13 @@ class HiChat{
     _displayOldMsg(user, msg, color, date){
         var container = document.getElementById('historyMsg'),
             msgToDisplay = document.createElement('p'),
-            //determine whether the msg contains emoji
             msg = this._showEmoji(msg);
             msgToDisplay.style.color = color || '#000';
-        msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
+        var userhtml = user; 
+        if(color == colorConfig["vip"]){
+            userhtml = `<span class = "vip-user">VIP:<img src = "../../content/star.png"></img></span> - ` + user
+        }
+        msgToDisplay.innerHTML = userhtml + '<span class="timespan">(' + date + '): </span>' + msg;
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
     }
@@ -194,8 +197,11 @@ class HiChat{
             //determine whether the msg contains emoji
             msg = this._showEmoji(msg);
             msgToDisplay.style.color = color || '#000';
-
-        msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
+            var userhtml = user; 
+            if(color == colorConfig["vip"]){
+                userhtml = `<span class = "vip-user">VIP:<img src = "../../content/star.png"></img></span> - ` + user
+            }
+        msgToDisplay.innerHTML = userhtml + '<span class="timespan">(' + date + '): </span>' + msg;
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
     }
