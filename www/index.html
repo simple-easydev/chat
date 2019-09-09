@@ -75,6 +75,10 @@
                 );
 
                 getChatHistory();
+                
+                var bh = $( window ).height();
+                $("#historyMsg").height(bh - 120);
+
             });
 
             function getChatHistory(){

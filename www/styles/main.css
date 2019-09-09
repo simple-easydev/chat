@@ -32,12 +32,11 @@ html, body {
     
 }
 .controls {
-    height: 10%;
+    height: 100px;
     display: inline-flex;
     width: 100%;
 }
 #historyMsg {
-    height: 90%;
     background-color: #fff;
     overflow: auto;
     padding:20px 20px 0 20px;
