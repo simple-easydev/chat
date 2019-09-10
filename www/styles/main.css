@@ -74,7 +74,7 @@ html, body {
     float:left;
     background: #f49790;
     color: #fff;
-    text-indent:20px;
+    padding-right: 30px;
 }
 #sendBtn {
     float: right;
