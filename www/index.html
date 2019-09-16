@@ -31,7 +31,9 @@
                 <div id = "chat-input-box">
                     <textarea id="messageInput" placeHolder="enter to send"></textarea>
                 </div>
-                <input id="sendBtn" type="button" value="SEND" class="btn">
+                <button id="sendBtn">
+                    <i class="ti-location-arrow"></i>
+                </button>
                 </div>
             </div>
         </div>
@@ -48,7 +50,7 @@
         <script src="scripts/inputEmoji.js"></script>
         <script>
             $(function () {
-                $('#messageInput').emoji({place: 'after'});
+                $('#messageInput').emoji({place: 'before'});
                 document.addEventListener('notification', e => {
                     const message = e.detail;
                     const time = Date.now();

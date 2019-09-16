@@ -50,7 +50,7 @@
 				input.selectionEnd = endPos + 2;
 			}
 
-			var $button = $("<span>").html(settings.button).css({cursor: 'pointer', 'font-size': settings.fontSize, 'position':'absolute', 'right':0}).on('click', showEmoji);
+			var $button = $("<span>").html(settings.button).css({cursor: 'pointer', 'font-size': settings.fontSize, 'position':'absolute', 'left':13, 'top':13}).on('click', showEmoji);
 			var bottom = $("#messageInput").height() + 10;
 			var $list = $('<div>').css(defaults.listCSS).css(settings.listCSS).css({"bottom":bottom});
 			
