@@ -221,6 +221,10 @@
     <script>
         var profile_image = new URLSearchParams(window.location.search).get('profile_image');
 
+        if(profile_image == undefined){
+            profile_image = '/dist/img/avatars/avatar_icon_png_48.png';
+        }
+
         $(function () {
             $('#messageInput').emoji({
                 place: 'before'

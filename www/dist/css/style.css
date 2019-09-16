@@ -1644,7 +1644,7 @@ input:checked+.slider:before {
 }
 .main .chat {
   height: 100%;
-  background: #e0f5fe;
+  background: #fc7066;
 	position: relative;
 }
 
@@ -2056,6 +2056,7 @@ input:checked+.slider:before {
   font-weight: 400;
   line-height: 1.4;
   text-transform: capitalize;
+  color: white;
 }
 
 .main .chat .content .message.me span {
@@ -2097,8 +2098,7 @@ input:checked+.slider:before {
   -ms-align-items: center;
   -o-align-items: center;
   align-items: center;
-  padding: 10px 0 0;
-  border-top: 2px solid #fbfbfb;
+  padding: 10px 0 0;  
 }
 
 .main .chat .bottom .form-control {
