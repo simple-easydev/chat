@@ -13,3 +13,6 @@ go to the /www/script/const.js
 Please change the HOST and SOCKET ADDRES here.
 
 
+##profile image link.
+http://localhost:8081/?name=test&&usertype=broadcaster&&groupid=1234&profile_image=https://wpkixx.com/html/talkshak/dist/img/avatars/avatar-male-1.jpg
+
