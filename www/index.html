@@ -219,6 +219,8 @@
     <script src="socket.io/socket.io.js"></script>
     <script src="scripts/hichat.js"></script>
     <script>
+        var profile_image = new URLSearchParams(window.location.search).get('profile_image');
+
         $(function () {
             $('#messageInput').emoji({
                 place: 'before'
@@ -241,7 +243,7 @@
                 msgDiv.find('.text-main span').html("<i class='ti-check'></i>" + time.toLocaleTimeString());
 
                 if(usertype == 'broadcaster'){
-                    msgDiv.prepend("<img class='avatar-md' src='dist/img/avatars/avatar-female-1.jpg' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
+                    msgDiv.prepend("<img class='avatar-md' src='" + profile_image + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
                 }
 
                 if(usertype != 'broadcaster' && usertype != 'system'){
@@ -313,7 +315,7 @@
                         msgDiv.find('.text-main span').html("<i class='ti-check'></i>" + time);
 
                         if(usertype == 'broadcaster'){
-                            msgDiv.prepend("<img class='avatar-md' src='dist/img/avatars/avatar-female-1.jpg' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
+                            msgDiv.prepend("<img class='avatar-md' src='" + profile_image + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
                         }
 
                         if(usertype != 'broadcaster' && usertype != 'system'){
