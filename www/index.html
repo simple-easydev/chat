@@ -250,6 +250,8 @@
                 }
 
                 msgDiv.appendTo(container);
+
+                scrollToBottom();
             });
 
             document.addEventListener('notification', e => {
@@ -285,6 +287,11 @@
 
         });
 
+        function scrollToBottom(){
+            var el = document.getElementById('historyMsg');
+            el.scrollTop = el.scrollHeight;
+        }
+
         function getChatHistory() {
             var urlParams = new URLSearchParams(window.location.search);
             var groupid = urlParams.get('groupid');
@@ -315,6 +322,8 @@
                         }
 
                         msgDiv.appendTo(container);
+
+                        scrollToBottom();
                     });
                 }
             });
