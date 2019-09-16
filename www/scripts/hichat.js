@@ -2,8 +2,9 @@ const colorConfig = {
     'guest':'#000000',
     'vip':'#78762E',
     'private':'blue',
-    'broadcaster':'#b83dba'
-}
+    'broadcaster':'#b83dba',
+    'system': 'red'
+};
 
 // bake_cookie({
 //     name: "myname" + new Date().getTime(),
@@ -13,7 +14,7 @@ const colorConfig = {
 function bake_cookie(data) {
     var scookie = JSON.stringify(data);
     document.cookie = scookie;
-    console.log(document.cookie)
+    console.log(document.cookie);
 }
 
 function read_cookie() {
@@ -23,7 +24,7 @@ function read_cookie() {
     return {};
 }
 
-function delete_cookie() {Jus
+function delete_cookie() {
     document.cookie = "";
 }
 
@@ -38,12 +39,11 @@ window.onload = function() {
     // hichat.init(groupid);
 };
 
-
 class HiChat{
     constructor(groupid, cookie){
         this.groupid = groupid;
         this.cookie = cookie;
-        this.init()
+        this.init();
     }
 
     init() {
@@ -57,7 +57,7 @@ class HiChat{
         
         var that = this;
         // this.socket = io.connect("https://chat1.camscartel.com")
-        this.socket = io.connect()
+        this.socket = io.connect();
         this.socket.on('connect', function() {
             document.getElementById('info').textContent = 'get yourself a nickname :)';
             if(usertype == "guest"){
@@ -79,17 +79,17 @@ class HiChat{
 
         this.socket.on('error', function(err) {
             if (document.getElementById('loginWrapper').style.display == 'none') {
-                document.getElementById('status').textContent = '!fail to connect :(';
+                // document.getElementById('status').textContent = '!fail to connect :(';
             } else {
                 document.getElementById('info').textContent = '!fail to connect :(';
             }
         });
         this.socket.on('system', function(nickName, userCount, type, roomid) {
             var msg = nickName + (type == 'login' ? ' joined' : ' left') + " room:" + roomid;
-            that._displayNewMsg('system ', msg, 'red');
-            document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
+            that._displayNewMsg('system', msg, 'system');
+            // document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
         });
-        this.socket.on('newMsg', function(user, msg, color) {
+        this.socket.on('newMsg', function(user, msg, color) {            
             that._displayNewMsg(user, msg, color);
         });
 
@@ -100,7 +100,6 @@ class HiChat{
             // document.dispatchEvent(event);
             
             that._displayNotification(msg, imagelink);
-
         });
         
         document.getElementById('loginBtn').addEventListener('click', function() {
@@ -127,9 +126,8 @@ class HiChat{
             messageInput.focus();
             if (msg.trim().length != 0) {
 
-                that.socket.emit('postMsg', msg, colorConfig[usertype]);
-                that._displayNewMsg('me', msg, colorConfig[usertype]);
-                
+                that.socket.emit('postMsg', msg, usertype);
+                that._displayNewMsg('me', msg, usertype);                
                 return;
             };
         }, false);
@@ -139,8 +137,8 @@ class HiChat{
                 msg = messageInput.value;
             if (e.keyCode == 13 && msg.trim().length != 0) {
                 messageInput.value = '';
-                that.socket.emit('postMsg', msg, colorConfig[usertype]);
-                that._displayNewMsg('me', msg, colorConfig[usertype]);
+                that.socket.emit('postMsg', msg, usertype);
+                that._displayNewMsg('me', msg, usertype);
             };
         }, false);
         
@@ -190,20 +188,25 @@ class HiChat{
         container.scrollTop = container.scrollHeight;
     }
 
-    _displayNewMsg(user, msg, color) {
-        var container = document.getElementById('historyMsg'),
-            msgToDisplay = document.createElement('p'),
-            date = new Date().toTimeString().substr(0, 8),
-            //determine whether the msg contains emoji
-            msg = this._showEmoji(msg);
-            msgToDisplay.style.color = color || '#000';
-            var userhtml = user; 
-            if(color == colorConfig["vip"]){
-                userhtml = `<span class = "vip-user">VIP:<img src = "../../content/star.png"></img></span> - ` + user
-            }
-        msgToDisplay.innerHTML = userhtml + '<span class="timespan">(' + date + '): </span>' + msg;
-        container.appendChild(msgToDisplay);
-        container.scrollTop = container.scrollHeight;
+    _displayNewMsg(user, msg, usertype) {        
+        var event = new CustomEvent('newMsg', {detail : { user: user, msg: msg, usertype: usertype }});
+        document.dispatchEvent(event);
+            
+        // var container = document.getElementById('historyMsg'),
+        //     msgToDisplay = document.createElement('p'),
+        //     date = new Date().toTimeString().substr(0, 8),
+        //     //determine whether the msg contains emoji
+        //     msg = this._showEmoji(msg);
+            
+        //     msgToDisplay.style.color = color || '#000';
+        //     var userhtml = user; 
+        //     if(color == colorConfig["vip"]){
+        //         userhtml = `<span class = "vip-user">VIP:<img src = "../../content/star.png"></img></span> - ` + user
+        //     }
+            
+        // msgToDisplay.innerHTML = userhtml + '<span class="timespan">(' + date + '): </span>' + msg;
+        // container.appendChild(msgToDisplay);
+        // container.scrollTop = container.scrollHeight;
     }
     _displayImage(user, imgData) {
         var container = document.getElementById('historyMsg'),

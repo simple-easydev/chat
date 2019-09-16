@@ -50,17 +50,18 @@
 				input.selectionEnd = endPos + 2;
 			}
 
-			var $button = $("<span>").html(settings.button).css({cursor: 'pointer', 'font-size': settings.fontSize, 'position':'absolute', 'left':13, 'top':13}).on('click', showEmoji);
-			var bottom = $("#messageInput").height() + 10;
-			var $list = $('<div>').css(defaults.listCSS).css(settings.listCSS).css({"bottom":bottom});
-			
-
+			var $button = $("<div class='add-smiles'></div>").html("<span>" + settings.button + "</span>").on('click', showEmoji);
+			// var $button = $("<span>").html(settings.button).css({cursor: 'pointer', 'font-size': settings.fontSize, 'position':'absolute', 'left':13, 'top':13}).on('click', showEmoji);
+			// var bottom = $("#messageInput").height() + 10;
+			// var $list = $('<div>').css(defaults.listCSS).css(settings.listCSS).css({"bottom":bottom});
+			var $list = $('<div>').addClass('smiles-bunch');
 
 			for (var n in settings.emojis) {
-				if (n > 0 && n % settings.rowSize == 0) {
-					$("<br>").appendTo($list);
-				}
-				$("<span>").html(settings.emojis[n]).css({cursor: 'pointer', 'font-size': settings.fontSize}).on('click', clickEmoji).appendTo($list);
+				// if (n > 0 && n % settings.rowSize == 0) {
+				// 	$("<br>").appendTo($list);
+				// }
+				// $("<i>").html(settings.emojis[n]).css({cursor: 'pointer', 'font-size': settings.fontSize}).on('click', clickEmoji).appendTo($list);
+				$('<i>').html(settings.emojis[n]).on('click', clickEmoji).appendTo($list);
 			}
 
 			if (settings.place === 'before') {
@@ -68,7 +69,7 @@
 			} else {
 				$button.insertAfter(this);
 			}
-			$list.insertAfter($input);
+			$list.insertAfter($button);
 		});
 		return this;
 	};

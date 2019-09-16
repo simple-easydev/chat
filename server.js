@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 var express = require('express'),
     app = express(),
     chatHistory = [],
@@ -68,13 +68,11 @@ io.on('connection', (socket) => {
 
 
     socket.on('notification', (msg, roomid, imagelink)=>{
-
         if(roomid == "global"){
             socket.broadcast.emit('notification', msg, imagelink);   
         }else{
             socket.broadcast.to(roomid).emit('notification', msg, imagelink);
-        }
-        
+        }        
     });
 
     function saveChatHistory(usertype, nickname, message, roomid){

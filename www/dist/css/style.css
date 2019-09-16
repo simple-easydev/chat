@@ -2556,6 +2556,7 @@ input:checked+.slider:before {
   margin-bottom: 4px;
   margin-left: 1px;
   margin-right: 1px;
+  font-style: normal;
 }
 
 .smiles-bunch::before {
