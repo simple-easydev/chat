@@ -2115,7 +2115,8 @@ input:checked+.slider:before {
 .main .chat .bottom .btn {
   padding: 0;
   line-height: 0;
-  color: #bdbac2;
+  color: #000;
+
 }
 
 .main .chat .bottom .btn:hover {
@@ -3162,6 +3163,32 @@ form.login-up {
   display: flex;
   height: 100%;
 }
+#loginWrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(5, 5, 5, .6);
+  text-align: center;
+  color: #fff;
+  display: block;
+  padding-top: 200px;
+}
 
+#loginBtn {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+
+}
+
+#nickWrapper{
+  display: none;
+  width: 50%;
+  margin: auto;
+}
 
 
