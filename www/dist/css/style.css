@@ -1954,6 +1954,7 @@ input:checked+.slider:before {
   margin-top: -10px;
   height: 10px;
   line-height: 12px;
+  white-space: nowrap;
 }
 
 .wave .dot {
