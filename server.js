@@ -60,10 +60,10 @@ io.on('connection', (socket) => {
     });
 
     //new message get
-    socket.on('postMsg', (msg, color) => {
+    socket.on('postMsg', (msg, color, img) => {
         var roomid = socket.roomid;
-        socket.broadcast.to(roomid).emit('newMsg', socket.nickname, msg, color, roomid);
-        saveChatHistory(socket.usertype, socket.nickname, msg, roomid);
+        socket.broadcast.to(roomid).emit('newMsg', socket.nickname, msg, color, roomid, img);
+        saveChatHistory(socket.usertype, socket.nickname, msg, roomid, img);
     });
 
 
@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
         }        
     });
 
-    function saveChatHistory(usertype, nickname, message, roomid){
+    function saveChatHistory(usertype, nickname, message, roomid, img){
 
         var curTime = Math.floor(Date.now()/1000);
         const datestr = new Date().toTimeString().substr(0, 8);
@@ -108,10 +108,8 @@ io.on('connection', (socket) => {
         if(message.indexOf("\n")==-1){
             message += '\n';
         }
-        const history = `${datestr}<=>${usertype}<=>${nickname}<=>${roomid}<=>${message}`;
+        const history = `${datestr}<=>${usertype}<=>${nickname}<=>${roomid}<=>${message}<=>${img}`;
         chatHistory.push(history);
-
-
     }
 
     

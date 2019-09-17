@@ -95,6 +95,7 @@ router.get("/getChatHistory", (req, res, next) => {
                 name:arr[2] || "",
                 room:arr[3] || "",
                 message:arr[4] || "",
+                image:arr[5]
             }
 
             jsonObj.time = jsonObj.time.replace(",", "");

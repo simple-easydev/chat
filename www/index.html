@@ -219,11 +219,11 @@
     <script src="socket.io/socket.io.js"></script>
     <script src="scripts/hichat.js"></script>
     <script>
-        var profile_image = new URLSearchParams(window.location.search).get('profile_image');
+        var urlParams = new URLSearchParams(window.location.search);
+        var my_profile_image = urlParams.get('profile_image');
+        var my_name = urlParams.get('name');
 
-        if(profile_image == undefined){
-            profile_image = '/dist/img/avatars/avatar_icon_png_48.png';
-        }
+        var default_avatar = '/dist/img/avatars/avatar_icon_png_48.png';
 
         $(function () {
             $('#messageInput').emoji({
@@ -236,18 +236,28 @@
                 var usertype = e.detail.usertype;
                 var time = new Date();
                 var color = colorConfig[usertype];
-                
+
+                var avatar = e.detail.image;
+
+                if(avatar == undefined){
+                    avatar = default_avatar;
+                }
+
                 if(color == undefined){
                     color = 'inherit';
                 }
 
+                if(usertype == 'system'){
+                    user = '';
+                }
+
                 var container = $('#historyMsg > .container > .col-md-12');
-                var msgDiv = $("<div class='message'><div class='text-main'><div class='text-group'><div class='text'><p style='color: " + color + "'></p></div></div><span></span></div></div>");
+                var msgDiv = $("<div class='message'><div class='text-main'><div class='text-group'><div class='text'><i>" + user + "</i><p style='color: " + color + "'></p></div></div><span></span></div></div>");
                 msgDiv.find('.text-main .text p').text(msg);
-                msgDiv.find('.text-main span').html("<i class='ti-check'></i>" + time.toLocaleTimeString());
+                msgDiv.find('.text-main > span').html("<i class='ti-check'></i>" + time.toLocaleTimeString());
 
                 if(usertype == 'broadcaster'){
-                    msgDiv.prepend("<img class='avatar-md' src='" + profile_image + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
+                    msgDiv.prepend("<img class='avatar-md' src='" + avatar + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
                 }
 
                 if(usertype != 'broadcaster' && usertype != 'system'){
@@ -310,16 +320,24 @@
                 },
                 success: function (response) {
                     response.result.forEach(element => {
-                        var time = element.time, usertype = element.usertype, name = element.name, msg = element.message;
+                        var time = element.time, usertype = element.usertype, name = element.name, msg = element.message, image = element.image;
                         var color = colorConfig[usertype];
                         var container = $('#historyMsg > .container > .col-md-12');
 
-                        var msgDiv = $("<div class='message'><div class='text-main'><div class='text-group'><div class='text'><p style='color: " + color + "'></p></div></div><span></span></div></div>");
+                        if(image == undefined){
+                            image = default_avatar;
+                        }
+
+                        if(name == my_name){
+                            name = 'me';
+                        }
+
+                        var msgDiv = $("<div class='message'><div class='text-main'><div class='text-group'><div class='text'><i>" + name + "</i><p style='color: " + color + "'></p></div></div><span></span></div></div>");
                         msgDiv.find('.text-main .text p').text(msg);
-                        msgDiv.find('.text-main span').html("<i class='ti-check'></i>" + time);
+                        msgDiv.find('.text-main > span').html("<i class='ti-check'></i>" + time);
 
                         if(usertype == 'broadcaster'){
-                            msgDiv.prepend("<img class='avatar-md' src='" + profile_image + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
+                            msgDiv.prepend("<img class='avatar-md' src='" + image + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
                         }
 
                         if(usertype != 'broadcaster' && usertype != 'system'){

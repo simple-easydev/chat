@@ -89,8 +89,8 @@ class HiChat{
             that._displayNewMsg('system', msg, 'system');
             // document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
         });
-        this.socket.on('newMsg', function(user, msg, color) {            
-            that._displayNewMsg(user, msg, color);
+        this.socket.on('newMsg', function(user, msg, color, roomid, image) {            
+            that._displayNewMsg(user, msg, color, image);
         });
 
         this.socket.on('notification', function(msg, imagelink) {
@@ -126,8 +126,8 @@ class HiChat{
             messageInput.focus();
             if (msg.trim().length != 0) {
 
-                that.socket.emit('postMsg', msg, usertype);
-                that._displayNewMsg('me', msg, usertype);                
+                that.socket.emit('postMsg', msg, usertype, my_profile_image);
+                that._displayNewMsg('me', msg, usertype, my_profile_image);
                 return;
             };
         }, false);
@@ -136,9 +136,9 @@ class HiChat{
             var messageInput = document.getElementById('messageInput'),
                 msg = messageInput.value;
             if (e.keyCode == 13 && msg.trim().length != 0) {
-                messageInput.value = '';
-                that.socket.emit('postMsg', msg, usertype);
-                that._displayNewMsg('me', msg, usertype);
+                messageInput.value = '';                
+                that.socket.emit('postMsg', msg, usertype, my_profile_image);
+                that._displayNewMsg('me', msg, usertype, my_profile_image);
             };
         }, false);
         
@@ -188,8 +188,8 @@ class HiChat{
         container.scrollTop = container.scrollHeight;
     }
 
-    _displayNewMsg(user, msg, usertype) {        
-        var event = new CustomEvent('newMsg', {detail : { user: user, msg: msg, usertype: usertype }});
+    _displayNewMsg(user, msg, usertype, profile_image) {        
+        var event = new CustomEvent('newMsg', {detail : { user: user, msg: msg, usertype: usertype, image: profile_image }});
         document.dispatchEvent(event);
             
         // var container = document.getElementById('historyMsg'),
