@@ -2088,7 +2088,9 @@ input:checked+.slider:before {
 .no-messages > i {
   font-size: 40px;
 }
-
+.main{
+  height: 100vh;
+}
 .main .chat .content .no-messages p {
   font-size: 18px;
   font-weight: 400;

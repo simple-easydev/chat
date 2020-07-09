@@ -1,4 +1,4 @@
 const CONSTANT = {
-    HOST:"http://localhost:8081",
-    SOCKET:"https://chat1.camscartel.com",
+    HOST:"https://chat1.fluidcast.net/",
+    SOCKET:"https://chat1.fluidcast.net",
 }
