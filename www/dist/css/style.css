@@ -1642,6 +1642,8 @@ input:checked+.slider:before {
 .main.bg .chat .content .date hr{
 	border-color: #cbcbcb;
 }
+
+
 .main .chat {
   height: 100%;
   background: #fc7066;

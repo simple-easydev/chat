@@ -11,10 +11,10 @@ var moment = require("moment");
 var bodyParser = require("body-parser");
 var appRouter = require("./routes");
 
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
+// const options = {
+//   key: fs.readFileSync('key.pem'),
+//   cert: fs.readFileSync('cert.pem')
+// };
 
 app.use('/', express.static(__dirname + '/www'));
 app.use(bodyParser.json({limit:"5mb"}));

@@ -72,9 +72,9 @@ class HiChat{
             document.getElementById('info').textContent = '!nickname is taken, choose another pls';
         });
         this.socket.on('loginSuccess', function() {
-            document.title = 'hichat | ' + document.getElementById('nicknameInput').value;
+            document.title = 'Talkshak | ' + document.getElementById('nicknameInput').value;
             document.getElementById('loginWrapper').style.display = 'none';
-            document.getElementById('messageInput').focus();
+            document.getElementById('message').focus();
         });
 
         this.socket.on('error', function(err) {
@@ -120,10 +120,10 @@ class HiChat{
             };
         }, false);
         document.getElementById('sendBtn').addEventListener('click', function() {
-            var messageInput = document.getElementById('messageInput'),
-                msg = messageInput.value;
-            messageInput.value = '';
-            messageInput.focus();
+            var message = document.getElementById('message'),
+                msg = message.value;
+            message.value = '';
+            message.focus();
             if (msg.trim().length != 0) {
 
                 that.socket.emit('postMsg', msg, usertype, my_profile_image);
@@ -132,15 +132,24 @@ class HiChat{
             };
         }, false);
 
-        document.getElementById('messageInput').addEventListener('keyup', function(e) {
-            var messageInput = document.getElementById('messageInput'),
-                msg = messageInput.value;
+
+        document.getElementById('light-dark-btn').addEventListener('click', function() {
+            const body = document.getElementsByTagName("body")[0];
+            const themeMode = body.getAttribute("data-layout-mode");
+            body.hasAttribute("data-layout-mode") && "dark" == body.getAttribute("data-layout-mode") ? document.body.setAttribute("data-layout-mode", "light"): document.body.setAttribute("data-layout-mode", "dark")
+        }, false);
+
+        document.getElementById('message').addEventListener('keyup', function(e) {
+            var message = document.getElementById('message'),
+                msg = message.value;
             if (e.keyCode == 13 && msg.trim().length != 0) {
-                messageInput.value = '';                
+                message.value = '';                
                 that.socket.emit('postMsg', msg, usertype, my_profile_image);
                 that._displayNewMsg('me', msg, usertype, my_profile_image);
             };
         }, false);
+
+
         
     }
 

@@ -1,223 +1,153 @@
-<html lang="en" class="gr__wpkixx_com gr__localhost">
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <title>Talkshak – chat messenger</title>
-    <link href="dist/img/favicon.png" type="image/png" rel="icon">
 
-    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dist/css/perfect-scrollbar.min.css">
-    <link rel="stylesheet" href="dist/css/themify-icons.css">
-    <link rel="stylesheet" href="dist/css/emoji.css">
-    <link rel="stylesheet" href="dist/css/style.css">
-    <link rel="stylesheet" href="dist/css/responsive.css">
+  <meta charset="utf-8" />
+  <title>Talkshak – chat messenger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Node js Socket.io real time working Chat App with Bootstrap 5 and responsive" name="description" />
+  <meta content="Themesbrand" name="author" />
+  <!-- App favicon -->
+  <link rel="shortcut icon" href="newchat/assets/images/favicon.ico">
+   <!-- magnific-popup css -->
+   <link href="newchat/assets/libs/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+   <!-- owl.carousel css -->
+   <link rel="stylesheet" href="newchat/assets/libs/owl.carousel/assets/owl.carousel.min.css">
+   <link rel="stylesheet" href="newchat/assets/libs/owl.carousel/assets/owl.theme.default.min.css">
+   <!-- Bootstrap Css -->
+   <link href="newchat/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+   <!-- Icons Css -->
+   <link href="newchat/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+   <!-- App Css-->
+   <link href="newchat/assets/css/app.css" id="app-style" rel="stylesheet" type="text/css" />
+   <!-- Style Css -->
+  <link href="newchat/assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
+  <!-- Toastr Css -->
+  <link href="newchat/assets/css/toastr.min.css" rel="stylesheet" />
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 
-<body data-gr-c-s-loaded="true">
-    <main>
-        <div class="layout">
-            <!-- Navigation -->
-
-            <!-- Sidebar -->
-
-            <!-- Add Friends -->
-
-            <!-- Create Chat -->
-
-            <div class="main" id="chat-dialog" style="right: 0px;">
-                <div class="tab-content" id="nav-tabContent">
-                    <!-- Start of Babble -->
-                    <div class="babble tab-pane fade active show" id="list-chat" role="tabpanel"
-                        aria-labelledby="list-chat-list">
-                        <!-- Start of Chat -->
-                        <div class="chat" id="chat1">
-                        <!-- chat content -->
-                            <div class="content ps-container ps-theme-default ps-active-y" id="historyMsg"
-                                data-ps-id="583c1f06-440c-bf58-9b12-6437c94fee59">
-                                <div class="container">
-                                    <div class="col-md-12">
-<!-- 
-                                        <div class="date">
-                                            <hr>
-                                            <span>Yesterday</span>
-                                            <hr>
-                                        </div>
-                                        <div class="message">
-                                            <img class="avatar-md" src="dist/img/avatars/avatar-female-1.jpg"
-                                                data-toggle="tooltip" data-placement="top" title="" alt="avatar"
-                                                data-original-title="Karen joye">
-                                            <div class="text-main">
-                                                <div class="text-group">
-                                                    <div class="text">
-                                                        <p>Where was i, i worry about my viewrs missing me too much!</p>
-                                                    </div>
-                                                </div>
-                                                <span>09:46 AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="message me">
-                                            <div class="text-main">
-                                                <div class="text-group me">
-                                                    <div class="text me">
-                                                        <p>But if you are not available to talk, then would't they miss
-                                                            you more?</p>
-                                                    </div>
-                                                </div>
-                                                <span>11:32 AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="message">
-                                            <img class="avatar-md" src="dist/img/avatars/avatar-female-1.jpg"
-                                                data-toggle="tooltip" data-placement="top" title="" alt="avatar"
-                                                data-original-title="Karen joye">
-                                            <div class="text-main">
-                                                <div class="text-group">
-                                                    <div class="text">
-                                                        <p>Aren't you sweet.</p>
-                                                    </div>
-                                                </div>
-                                                <span>02:56 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="message me">
-                                            <div class="text-main">
-                                                <div class="text-group me">
-                                                    <div class="text me">
-                                                        <p>That's not an answer..</p>
-                                                    </div>
-                                                </div>
-                                                <div class="text-group me">
-                                                    <div class="text me">
-                                                        <p>I am tres sorry, what were you saying?</p>
-                                                    </div>
-                                                </div>
-                                                <span>10:21 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="message">
-                                            <img class="avatar-md" src="dist/img/avatars/avatar-female-1.jpg"
-                                                data-toggle="tooltip" data-placement="top" title="" alt="avatar"
-                                                data-original-title="Karen joye">
-                                            <div class="text-main">
-                                                <div class="text-group">
-                                                    <div class="text">
-                                                        <p>Great start guys, why can you only talk at certain time on
-                                                            certain days?</p>
-                                                    </div>
-                                                </div>
-                                                <span>11:07 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="date">
-                                            <hr>
-                                            <span>Today</span>
-                                            <hr>
-                                        </div>
-                                        <div class="message me">
-                                            <div class="text-main">
-                                                <div class="text-group me">
-                                                    <div class="text me">
-                                                        <p>hmmmm, Well done all. send me document please</p>
-                                                    </div>
-                                                </div>
-                                                <span>10:21 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="message">
-                                            <img class="avatar-md" src="dist/img/avatars/avatar-female-1.jpg"
-                                                data-toggle="tooltip" data-placement="top" title="" alt="avatar"
-                                                data-original-title="Karen joye">
-                                            <div class="text-main">
-                                                <div class="text-group">
-                                                    <div class="text">
-                                                        <div class="attachment">
-                                                            <button class="btn attach" title="Click to download"><i
-                                                                    class="ti-file"></i></button>
-                                                            <div class="file">
-                                                                <h5><a href="#" title="Click to download">Policy
-                                                                        Sheet.pdf</a></h5>
-                                                                <span>80kb Document</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <span>11:07 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="message me">
-                                            <div class="text-main">
-                                                <div class="text-group me">
-                                                    <div class="text me">
-                                                        <p>i have received the .pdf document please send me jpeg file
-                                                            for our requirement..</p>
-                                                    </div>
-                                                </div>
-                                                <span><i class="ti-check"></i>10:21 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="message">
-                                            <img class="avatar-md" src="dist/img/avatars/avatar-female-1.jpg"
-                                                data-toggle="tooltip" data-placement="top" title="" alt="avatar"
-                                                data-original-title="Karen joye">
-                                            <div class="text-main">
-                                                <div class="text-group">
-                                                    <div class="text typing">
-                                                        <div class="wave">
-                                                            <span class="dot"></span>
-                                                            <span class="dot"></span>
-                                                            <span class="dot"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                         -->
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- chat form -->
-                            <div class="container">
-                                <div class="col-md-12">
-                                    <div class="bottom">
-                                        <form class="text-area">
-                                            <textarea id="messageInput" class="form-control"
-                                                placeholder="Start typing for reply..." rows="1"
-                                                spellcheck="false"></textarea>                                            
-                                            <button type="button" id="sendBtn" class="btn send"><i
-                                                    class="ti-location-arrow"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> <!-- Layout -->
-            <div id="loginWrapper">
-                <p id="info">connecting to server...</p>
-                <div id="nickWrapper">
-                    <input type="text" class="form-control" placeHolder="nickname" id="nicknameInput" />
-                    <input type="button" value="OK" id="loginBtn" class="btn" />
-                </div>
+<body>
+  <div class="layout-wrapper d-lg-flex">
+    <!-- Start User chat -->
+    <div class="user-chat w-100 overflow-hidden">
+      <div class="d-lg-flex">
+        <!-- start chat conversation section -->
+        <div class="w-100 overflow-hidden position-relative user-chats1">
+          <!-- start chat conversation -->
+          <div class="chat-conversation p-3 p-lg-4" id="messageBody" data-simplebar="init">
+            <div id="" class="messageList">
+              <ul class="list-unstyled mb-0 messages__history" id=""></ul>
             </div>
-    </main>
-    <!-- <script src="dist/js/jquery3.3.1.js"></script> -->
-    <!-- <script src="dist/js/vendor/jquery-slim.min.js"></script> -->
-    <script src="dist/js/vendor/popper.min.js"></script>
-    <script src="dist/js/bootstrap.min.js"></script>
-    <script src="dist/js/perfect-scrollbar.min.js"></script>
-    <script src="dist/js/script.js"></script>
-    <script src="scripts/inputEmoji.js"></script>
+            <div class="fallback"></div>
+          </div>
+          <!-- end chat conversation end -->
+          
+          <!-- start chat input section -->
+          <div class="chat-input-section p-3 p-lg-4 border-top mb-0">
+              <div class="row g-0">
+                <div class="file_Upload position-absolute" style="bottom: 114px;left: 24px;"></div>
+                <div id='cmdiv' class="text-center camera-img" style="display: none;">
+                  <canvas id="canvas" style="display: none;" width="350" height="270"></canvas>
+                  <video id="view_video" class="ms-auto me-4 rounded border border-light" width="350" height="270" autoplay style="display: none;">
+                    <i class="ri-close-line text-danger image-remove" onclick="deleteImage(this)"></i>
+                  </video>
+                  <div class="hstack gap-2 justify-content-center position-relative"style="margin-top:-58px; z-index: 1;">
+                    <button type="button" class="btn btn-primary rounded-circle" id="click-photo" style="display: none;"><i class="ri-camera-2-line align-bottom"></i></button>
+                    <button type="button" class="btn btn-danger rounded-circle" id="close-photo" style="display: none;"><i class="ri-close-line align-bottom"></i></button>
+                  </div>
+
+                </div>
+                <div class="col">
+                  <input type="hidden" name="id" value="" class="form-control form-control-lg bg-light border-light message_id" />
+                  <input type="text" id="message" class="form-control form-control-lg bg-light border-light message_form__input" value="" placeholder="Enter Message...">
+                  <input type="file" onchange="return fileValidation()" id="upload_input" class="upload_input" name="file" style="display: none;" />
+                  <input type="file" id="upload_inputxyz" class="upload_input" name="file" style="display: none;" />
+                  <span id="singleMessage" class="text-danger font-weight-bold"></span>
+                </div>
+                <div class="col-auto">
+                  <div class="chat-input-links ms-md-2 me-md-0">
+                    <ul class="list-inline mb-0">
+                      <li class="list-inline-item " data-bs-toggle="tooltip" data-bs-placement="top" title="Remove">
+                        <div class="remove_value"></div>
+                      </li>
+                      <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Emoji">
+                        <button type="button" class="btn btn-link text-decoration-none font-size-16 btn-lg waves-effect px-2 px-lg-3 emojis_btn">
+                          <i class="ri-emotion-happy-line"></i>
+                        </button>
+                      </li>
+                      
+                      <li class="list-inline-item">
+                        <button id = "sendBtn" class="btn btn-primary font-size-16 btn-lg chat-send waves-effect waves-light">
+                          <i class="ri-send-plane-2-fill"></i>
+                        </button>
+                      </li>
+                      
+                      <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Dark / Light Mode">
+                        <button type="button" id="light-dark-btn" class="btn btn-link text-decoration-none font-size-16 btn-lg waves-effect px-2 px-lg-3">
+                          <i class="ri-sun-line theme-mode-icon"></i>
+                        </button>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- end chat input section -->
+        </div>
+        <!-- end chat conversation section -->
+      </div>
+      <!-- End User chat -->
+
+    <div id="loginWrapper">
+        <p id="info">connecting to server...</p>
+        <div id="nickWrapper">
+            <input type="text" class="form-control" placeHolder="nickname" id="nicknameInput" />
+            <input type="button" value="OK" id="loginBtn" class="btn btn-primary font-size-16 btn-lg chat-send waves-effect waves-light" />
+        </div>
+    </div>
+
+    </div>
+    <!-- end  layout wrapper -->
+
+  <!-- JAVASCRIPT -->
+  <script src="newchat/assets/libs/jquery/jquery.min.js"></script>
+  <script src="newchat/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="newchat/assets/libs/simplebar/simplebar.min.js"></script>
+  <script src="newchat/assets/libs/node-waves/waves.min.js"></script>
+  <!-- Magnific Popup-->
+  <script src="newchat/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+  <!-- owl.carousel js -->
+  <script src="newchat/assets/libs/owl.carousel/owl.carousel.min.js"></script>
+  <!-- page init -->
+  <script src="newchat/assets/js/pages/index.init.js"></script>
+  <script src="newchat/assets/js/app.js"></script>
+  <!-- owl.carousel js -->
+  <script src="newchat/assets/libs/owl.carousel/owl.carousel.min.js"></script>
+  <script src="newchat/assets/js/sweetalert.min.js"></script>
+
+    <!-- page init -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="newchat/assets/js/toastr.min.js"></script>
+    <script src="newchat/js/axios.min.js"></script>
+    <script src="newchat/js/SimpleImage.js"></script>
+    <script src="newchat/js/fgEmojiPicker.js"></script>
+    <script src="newchat/assets/js/pages/index.init.js"></script>
     <script src="scripts/const.js"></script>
-    <script src="socket.io/socket.io.js"></script>
     <script src="scripts/hichat.js"></script>
+    <script>
+      const emojiPicker = new FgEmojiPicker({
+        trigger: ['.emojis_btn'],
+        removeOnSelection: false,
+        closeButton: true,
+        position: ['top', 'left'],
+        preFetch: true,
+        insertInto: document.querySelector('.message_form__input'),
+        emit(obj, triggerElement) {}
+      });
+    </script>
     <script>
         var urlParams = new URLSearchParams(window.location.search);
         var my_profile_image = urlParams.get('profile_image');
@@ -226,9 +156,9 @@
         var default_avatar = '/dist/img/avatars/avatar_icon_png_48.png';
 
         $(function () {
-            $('#messageInput').emoji({
-                place: 'before'
-            });
+            // $('#message').emoji({
+            //     place: 'before'
+            // });
 
             document.addEventListener('newMsg', e => {
                 var user = e.detail.user;
@@ -250,61 +180,99 @@
                 if(usertype == 'system'){
                     user = '';
                 }
+                const id = 0;
+                var image = `<p class="mb-0 single_message text-break" style='color: ` + color + `'>${msg}</p>`
 
-                var container = $('#historyMsg > .container > .col-md-12');
-                var msgDiv = $("<div class='message'><div class='text-main'><div class='text-group'><div class='text'><i>" + user + "</i><p style='color: " + color + "'></p></div></div><span></span></div></div>");
-                msgDiv.find('.text-main .text p').text(msg);
-                msgDiv.find('.text-main > span').html("<i class='ti-check'></i>" + time.toLocaleTimeString());
+                const messageBox = document.querySelector(".messages__history");
+                const receiver_image = "<img class='avatar-md' src='" + avatar + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>";
+                const sender_image = "<img class='avatar-md' src='" + avatar + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>";
+
+                var receivedMsg = `
+                <li class="msg_${id}">
+                        <div class="conversation-list">
+                            <div class="chat-avatar">
+                            ${receiver_image}
+                            </div>
+                            <div class="user-chat-content">
+                            <div class="ctext-wrap">
+                                <div class="ctext-wrap-content">
+                                ${image != undefined?image:''}
+                                <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span
+                                    class="align-middle">${time.toLocaleTimeString()}</span></p>
+                                </div>
+                                <div class="dropdown align-self-start">
+                                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="ri-more-2-fill"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" href="javascript:void(0);" id="${id}" onclick="singleMessageCopy(this)">Copy <i class="ri-file-copy-line float-end text-muted"></i></a>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="conversation-name receiver_name">${user}</div>
+                            </div>
+                        </div>
+                        </li>
+                `;
+                var myMsg = `
+                    <li class="right msg_${id}">
+                            <div class="conversation-list">
+                                <div class="chat-avatar">
+                                ${sender_image}
+                                </div>
+                                <div class="user-chat-content">
+                                <div class="ctext-wrap">
+                                    <div class="ctext-wrap-content">
+                                    ${image != undefined?image:''}
+                                    <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span
+                                        class="align-middle">${time.toLocaleTimeString()}</span></p>
+                                    </div>
+                                    <div class="dropdown align-self-start">
+                                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="ri-more-2-fill"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item" href="javascript:void(0);" id="${id}" onclick="singleMessageCopy(this)">Copy <i class="ri-file-copy-line float-end text-muted"></i></a>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="conversation-name user_name">${user}</div>
+                                </div>
+                            </div>
+                            </li>
+                `;
+
+                // var container = $('#messageBody > .container > .col-md-12');
+                // var msgDiv = $("<div class='message'><div class='text-main'><div class='text-group'><div class='text'><i>" + user + "</i><p style='color: " + color + "'></p></div></div><span></span></div></div>");
+                // msgDiv.find('.text-main .text p').text(msg);
+                // msgDiv.find('.text-main > span').html("<i class='ti-check'></i>" + time.toLocaleTimeString());
 
                 if(usertype == 'broadcaster'){
-                    msgDiv.prepend("<img class='avatar-md' src='" + avatar + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
+                    // msgDiv.prepend("<img class='avatar-md' src='" + avatar + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>");
+                    messageBox.innerHTML += receivedMsg;
                 }
 
                 if(usertype != 'broadcaster' && usertype != 'system'){
-                    msgDiv.addClass("me");
-                    msgDiv.find('.text-main, .text-group, .text').addClass("me");
+                    // msgDiv.addClass("me");
+                    // msgDiv.find('.text-main, .text-group, .text').addClass("me");
+                    messageBox.innerHTML += myMsg;
                 }
 
-                msgDiv.appendTo(container);
+                // msgDiv.appendTo(container);
 
                 scrollToBottom();
             });
 
             document.addEventListener('notification', e => {
-
-                // const message = e.detail;
-                // const time = Date.now();
-
-                // const html = `<div class="toast" id = "${time}" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" >
-                //             <div class="toast-header">
-                //                 <strong class="mr-auto">Chat</strong>
-                //                 <small></small>
-                //                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                //                 <span aria-hidden="true">&times;</span>
-                //                 </button>
-                //             </div>
-                //             <div class="toast-body">
-                //                 ${message}
-                //             </div>
-                //         </div>`;
-
-                //$("#notification-container").prepend(html);
-                //$(`#${time}`).toast('show');
-                //$(`#${time}`).on('hidden.bs.toast', function () {
-                    // do something…
-                    //$(this).remove();
-                //})
             });
 
             getChatHistory();
-
-            //var bh = $(window).height();
-            //$("#historyMsg").height(bh - 120);
-
         });
 
         function scrollToBottom(){
-            var el = document.getElementById('historyMsg');
+            var el = document.getElementById('messageBody');
             el.scrollTop = el.scrollHeight;
         }
 
@@ -322,7 +290,7 @@
                     response.result.forEach(element => {
                         var time = element.time, usertype = element.usertype, name = element.name, msg = element.message, image = element.image;
                         var color = colorConfig[usertype];
-                        var container = $('#historyMsg > .container > .col-md-12');
+                        var container = $('#messageBody > .container > .col-md-12');
 
                         if(image == undefined){
                             image = default_avatar;
