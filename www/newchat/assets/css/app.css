@@ -82,7 +82,8 @@ File: Main Css File
   --bs-sidebar-sub-bg: #303841;
   --bs-chat-primary-bg: #7269ef;
   --bs-chat-secondary-bg: #36404a;
-  --bs-body-bg: #303841;
+  /* --bs-body-bg: #303841; */
+  --bs-body-bg: #000;
   --bs-body-color: #a6b0cf;
   --bs-body-color-rgb: 166, 176, 207;
   --bs-footer-bg: #272c3b;
@@ -112,7 +113,7 @@ File: Main Css File
   --bs-dropdown-link-hover-color: #ecedee;
   --bs-dropdown-link-hover-bg: #36404a;
   --bs-dropdown-border-width: 1px;
-  --bs-card-bg: #262e35;
+  --bs-card-bg: #000;
   --bs-card-cap-bg: #272c3b;
   --bs-card-logo-dark: none;
   --bs-card-logo-light: block;
