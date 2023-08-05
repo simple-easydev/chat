@@ -22,7 +22,7 @@
    <!-- App Css-->
    <link href="newchat/assets/css/app.css" id="app-style" rel="stylesheet" type="text/css" />
    <!-- Style Css -->
-  <link href="newchat/assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
+  <!-- <link href="newchat/assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" /> -->
   <!-- Toastr Css -->
   <link href="newchat/assets/css/toastr.min.css" rel="stylesheet" />
 
@@ -180,6 +180,14 @@
                 if(usertype == 'system'){
                     user = '';
                 }
+
+                const body = document.getElementsByTagName("body")[0];
+                const themeMode = body.getAttribute("data-layout-mode");
+                if(themeMode == "dark" && (usertype == "broadcaster" || usertype == "system")){
+                  color = "white";
+                }
+
+
                 const id = 0;
                 var image = `<p class="mb-0 single_message text-break" style='color: ` + color + `'>${msg}</p>`
 

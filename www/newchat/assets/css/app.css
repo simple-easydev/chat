@@ -62,7 +62,7 @@ File: Main Css File
   --bs-input-placeholder-color: #7a7f9a;
   --bs-input-group-addon-bg: #f5f7fb;
   --bs-input-check-border: var(--bs-input-border);
-  --bs-theme-mode-icon: "";
+  --bs-theme-mode-icon: "\f105";
 }
 
 [data-layout-mode=dark] {
@@ -84,7 +84,7 @@ File: Main Css File
   --bs-chat-secondary-bg: #36404a;
   /* --bs-body-bg: #303841; */
   --bs-body-bg: #000;
-  --bs-body-color: #a6b0cf;
+  --bs-body-color: #ffffff;
   --bs-body-color-rgb: 166, 176, 207;
   --bs-footer-bg: #272c3b;
   --bs-footer-color: #a6b0cf;
@@ -141,7 +141,7 @@ File: Main Css File
   --bs-input-placeholder-color: #a6b0cf;
   --bs-input-group-addon-bg: #36404a;
   --bs-input-check-border: #3f4a56;
-  --bs-theme-mode-icon: "";
+  --bs-theme-mode-icon: "\eefb";
 }
 
 /*!
