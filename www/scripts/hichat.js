@@ -46,6 +46,11 @@ class HiChat{
         this.init();
     }
 
+    getTheme() {
+        const body = document.getElementsByTagName("body")[0];
+        return body.getAttribute("data-layout-mode");
+    }
+
     init() {
         var groupid = this.groupid;
         var cookie = this.cookie;
@@ -65,7 +70,7 @@ class HiChat{
                 document.getElementById('nicknameInput').focus();
             }else{
                 document.getElementById('loginWrapper').style.display = 'none';
-                that.socket.emit('login', name, usertype, groupid);
+                that.socket.emit('login', name, usertype, groupid, that.getTheme());
             }
         });
         this.socket.on('nickExisted', function() {
@@ -89,7 +94,8 @@ class HiChat{
             that._displayNewMsg('system', msg, 'system');
             // document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
         });
-        this.socket.on('newMsg', function(user, msg, color, roomid, image) {            
+        this.socket.on('newMsg', function(user, msg, color, roomid, image, theme) {            
+            console.log("theme ==>", theme)
             that._displayNewMsg(user, msg, color, image);
         });
 
@@ -105,7 +111,7 @@ class HiChat{
         document.getElementById('loginBtn').addEventListener('click', function() {
             var nickName = document.getElementById('nicknameInput').value;
             if (nickName.trim().length != 0) {
-                that.socket.emit('login', nickName, usertype, groupid);
+                that.socket.emit('login', nickName, usertype, groupid, that.getTheme());
             } else {
                 document.getElementById('nicknameInput').focus();
             };
@@ -115,7 +121,7 @@ class HiChat{
             if (e.keyCode == 13) {
                 var nickName = document.getElementById('nicknameInput').value;
                 if (nickName.trim().length != 0) {
-                    that.socket.emit('login', nickName, usertype, groupid);
+                    that.socket.emit('login', nickName, usertype, groupid, that.getTheme());
                 };
             };
         }, false);
@@ -125,8 +131,7 @@ class HiChat{
             message.value = '';
             message.focus();
             if (msg.trim().length != 0) {
-
-                that.socket.emit('postMsg', msg, usertype, my_profile_image);
+                that.socket.emit('postMsg', msg, usertype, my_profile_image, that.getTheme());
                 that._displayNewMsg('me', msg, usertype, my_profile_image);
                 return;
             };
@@ -144,7 +149,7 @@ class HiChat{
                 msg = message.value;
             if (e.keyCode == 13 && msg.trim().length != 0) {
                 message.value = '';                
-                that.socket.emit('postMsg', msg, usertype, my_profile_image);
+                that.socket.emit('postMsg', msg, usertype, my_profile_image, that.getTheme());
                 that._displayNewMsg('me', msg, usertype, my_profile_image);
             };
         }, false);
