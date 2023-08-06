@@ -57,6 +57,7 @@ io.on('connection', (socket) => {
 
     //user leaves
     socket.on('disconnect', () => {
+        console.log("disconnect ==>", socket.roomid)
         if (socket.nickname != null) {
             var roomid = socket.roomid;
             users[roomid].splice(users[roomid].indexOf(socket.nickname), 1);
