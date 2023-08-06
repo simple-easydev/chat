@@ -30,7 +30,7 @@ io = require('socket.io').listen(server),
 io.on('connection', (socket) => {
     console.log("NEW SCOKET IS CONNECTED ON", process.env.PORT || 3000)
     //new user login
-    socket.on('login', (nickname, usertype, roomid, theme) => {
+    socket.on('login', (nickname, usertype, roomid) => {
 
         if(users[roomid] == undefined){
             users[roomid] = [];
@@ -66,12 +66,10 @@ io.on('connection', (socket) => {
     });
 
     //new message get
-    socket.on('postMsg', (msg, color, img, theme) => {
+    socket.on('postMsg', (msg, color, img) => {
         var roomid = socket.roomid;
-        console.log("roomid ==>", roomid)
-        console.log("theme ==>", theme)
-        socket.broadcast.to(roomid).emit('newMsg', socket.nickname, msg, color, roomid, img, theme);
-        saveChatHistory(socket.usertype, socket.nickname, msg, roomid, img, theme);
+        socket.broadcast.to(roomid).emit('newMsg', socket.nickname, msg, color, roomid, img);
+        saveChatHistory(socket.usertype, socket.nickname, msg, roomid, img);
     });
 
 
@@ -83,7 +81,7 @@ io.on('connection', (socket) => {
         }        
     });
 
-    function saveChatHistory(usertype, nickname, message, roomid, img, theme){
+    function saveChatHistory(usertype, nickname, message, roomid, img){
 
         var curTime = Math.floor(Date.now()/1000);
         const datestr = new Date().toTimeString().substr(0, 8);
@@ -116,7 +114,7 @@ io.on('connection', (socket) => {
         if(message.indexOf("\n")==-1){
             message += '\n';
         }
-        const history = `${datestr}<=>${usertype}<=>${nickname}<=>${roomid}<=>${message}<=>${img}<=>${theme}`;
+        const history = `${datestr}<=>${usertype}<=>${nickname}<=>${roomid}<=>${message}<=>${img}`;
         chatHistory.push(history);
     }
 
