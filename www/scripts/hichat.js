@@ -32,23 +32,25 @@ var hichat;
 window.onload = function() {
     var urlParams = new URLSearchParams(window.location.search);
     var groupid = urlParams.get('groupid');
+    var theme = urlParams.get('theme');
     
     var cookie = read_cookie();
-    hichat = new HiChat(groupid, cookie);
+    hichat = new HiChat(groupid, cookie, theme);
     
     // hichat.init(groupid);
 };
 
 class HiChat{
-    constructor(groupid, cookie){
+    constructor(groupid, cookie, theme){
         this.groupid = groupid;
         this.cookie = cookie;
+        this.theme = theme;
         this.init();
+        this.setTheme(theme)
     }
 
-    getTheme() {
-        const body = document.getElementsByTagName("body")[0];
-        return body.getAttribute("data-layout-mode");
+    setTheme(theme) {
+        document.body.setAttribute("data-layout-mode", theme)
     }
 
     init() {
@@ -61,8 +63,8 @@ class HiChat{
         this.name = name;
         
         var that = this;
-        // this.socket = io.connect("https://chat1.camscartel.com")
-        this.socket = io.connect();
+        this.socket = io.connect("https://chat1.fluidcast.net")
+        // this.socket = io.connect();
         this.socket.on('connect', function() {
             document.getElementById('info').textContent = 'get yourself a nickname :)';
             if(usertype == "guest"){
@@ -70,7 +72,7 @@ class HiChat{
                 document.getElementById('nicknameInput').focus();
             }else{
                 document.getElementById('loginWrapper').style.display = 'none';
-                that.socket.emit('login', name, usertype, groupid, that.getTheme());
+                that.socket.emit('login', name, usertype, groupid);
             }
         });
         this.socket.on('nickExisted', function() {
@@ -111,7 +113,7 @@ class HiChat{
         document.getElementById('loginBtn').addEventListener('click', function() {
             var nickName = document.getElementById('nicknameInput').value;
             if (nickName.trim().length != 0) {
-                that.socket.emit('login', nickName, usertype, groupid, that.getTheme());
+                that.socket.emit('login', nickName, usertype, groupid);
             } else {
                 document.getElementById('nicknameInput').focus();
             };
@@ -121,7 +123,7 @@ class HiChat{
             if (e.keyCode == 13) {
                 var nickName = document.getElementById('nicknameInput').value;
                 if (nickName.trim().length != 0) {
-                    that.socket.emit('login', nickName, usertype, groupid, that.getTheme());
+                    that.socket.emit('login', nickName, usertype, groupid);
                 };
             };
         }, false);
@@ -131,7 +133,7 @@ class HiChat{
             message.value = '';
             message.focus();
             if (msg.trim().length != 0) {
-                that.socket.emit('postMsg', msg, usertype, my_profile_image, that.getTheme());
+                that.socket.emit('postMsg', msg, usertype, my_profile_image);
                 that._displayNewMsg('me', msg, usertype, my_profile_image);
                 return;
             };
@@ -149,7 +151,7 @@ class HiChat{
                 msg = message.value;
             if (e.keyCode == 13 && msg.trim().length != 0) {
                 message.value = '';                
-                that.socket.emit('postMsg', msg, usertype, my_profile_image, that.getTheme());
+                that.socket.emit('postMsg', msg, usertype, my_profile_image);
                 that._displayNewMsg('me', msg, usertype, my_profile_image);
             };
         }, false);
