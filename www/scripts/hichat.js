@@ -96,8 +96,7 @@ class HiChat{
             that._displayNewMsg('system', msg, 'system');
             // document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
         });
-        this.socket.on('newMsg', function(user, msg, color, roomid, image, theme) {            
-            console.log("theme ==>", theme)
+        this.socket.on('newMsg', function(user, msg, color, roomid, image) {            
             that._displayNewMsg(user, msg, color, image);
         });
 

@@ -6,6 +6,8 @@ var async = require('async');
 var socket = io.connect(`http://${process.env.HOST}:${process.env.PORT}`, {reconnect: true});
 var fs = require('fs');
 var dir = process.env.HISTORY;
+const LOVENSE_TOKEN = process.env.LOVENSE_TOKEN;
+const axios = require("axios");
 
 router.post("/notification", (req, res, next) => {
     const message = req.body.message;
@@ -117,6 +119,75 @@ router.get("/getChatHistory", (req, res, next) => {
     });
     
 })
+
+router.post("/lovense/fallback", (req, res, next)=>{
+    const reqbody = req.body;
+    //regiser device
+    fs.writeFile(`./lovense/users.json`, JSON.stringify(reqbody), (err) => {
+        if (err) throw err;
+        console.log('a device is saved!');
+    });
+
+    res.status(200).json(reqbody);
+})
+
+router.post("/lovense/qrcode", async (req, res, next)=>{
+
+    const { uid, uname, utoken } = req.body;
+
+    let data = JSON.stringify({
+        "token": LOVENSE_TOKEN,
+        "uid": uid,
+        "uname": uname,
+        "utoken": utoken,
+        "v": 2
+    });
+
+    let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://api.lovense-api.com/api/lan/getQrCode',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+    };
+
+    const { data:qrRes } = await axios.request(config);
+    res.status(200).json(qrRes);
+})
+
+router.post("/lovense/command", async (req, res, next)=>{
+
+    const { uid, reactionTime, vibrationPower } = req.body;
+
+    let data = JSON.stringify({
+        "token": LOVENSE_TOKEN,
+        "uid": uid,
+        "command": "Function",
+        "action": `Vibrate:${vibrationPower}`,
+        "timeSec": reactionTime,
+        "loopRunningSec": 9,
+        "loopPauseSec": 4,
+        "apiVer": 1
+      });
+
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://api.lovense-api.com/api/lan/v2/command',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+
+    const { data:qrRes } = await axios.request(config);
+    res.status(200).json(qrRes);
+
+})
+
+
 
 
 module.exports = router;

@@ -129,7 +129,7 @@
   <script src="newchat/assets/js/sweetalert.min.js"></script>
 
     <!-- page init -->
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="scripts/socket.io.js"></script>
     <script src="newchat/assets/js/toastr.min.js"></script>
     <script src="newchat/js/axios.min.js"></script>
     <script src="newchat/js/SimpleImage.js"></script>
@@ -183,13 +183,13 @@
 
                 const body = document.getElementsByTagName("body")[0];
                 const themeMode = body.getAttribute("data-layout-mode");
-                if((usertype == "broadcaster" || usertype == "system")){
+                if((usertype == "broadcaster" || usertype == "system") || themeMode == "dark"){
                   color = "white";
                 }
 
 
                 const id = 0;
-                var image = `<p class="mb-0 single_message text-break" style='color: ` + color + `'>${msg}</p>`
+                var image = `<p class="mb-0 single_message text-break">${msg}</p>`
 
                 const messageBox = document.querySelector(".messages__history");
                 const receiver_image = "<img class='avatar-md' src='" + avatar + "' data-toggle='tooltip' data-placement='top' alt='avatar'/>";
